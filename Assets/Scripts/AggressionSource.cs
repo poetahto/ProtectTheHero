@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-    public class FearSource : MonoBehaviour
+    public class AggressionSource : MonoBehaviour
     {
-        private static List<FearSource> _allFearObjects;
+        private static List<AggressionSource> _allFearObjects;
 
         public float radius = 2;
 
-        public static bool InFearRange(Vector3 position)
+        public static bool InAggroRange(Vector3 position)
         {
             foreach (var fearObject in _allFearObjects)
             {
@@ -27,7 +27,7 @@ namespace DefaultNamespace
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetStatics()
         {
-            _allFearObjects = new List<FearSource>();
+            _allFearObjects = new List<AggressionSource>();
         }
 
         private void OnEnable()
