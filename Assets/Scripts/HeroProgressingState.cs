@@ -1,30 +1,35 @@
-﻿using FSM;
+﻿using System;
+using FSM;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Splines;
 
 namespace DefaultNamespace
 {
+    [Serializable]
     public class HeroProgressingState : StateBase
     {
-        private readonly HeroController _controller;
+        public float speed;
+        public SplineContainer spline;
+        public Transform targetTransform;
+
         private float _progress;
         private float _length;
 
-        public HeroProgressingState(HeroController controller) : base(needsExitTime: false)
+        public HeroProgressingState() : base(needsExitTime: false)
         {
-            _controller = controller;
         }
 
         public override void OnEnter()
         {
-            _length = _controller.path.CalculateLength();
+            _length = spline.CalculateLength();
         }
 
         public override void OnLogic()
         {
-            _progress += _controller.speed / _length * Time.deltaTime;
-            float3 position = _controller.path.EvaluatePosition(_progress);
-            _controller.transform.position = position;
+            _progress += speed / _length * Time.deltaTime;
+            float3 position = spline.EvaluatePosition(_progress);
+            targetTransform.position = position;
         }
     }
 }

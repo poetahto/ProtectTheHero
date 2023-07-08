@@ -1,14 +1,13 @@
-﻿using FSM;
+﻿using System;
+using FSM;
 
 namespace DefaultNamespace
 {
+    [Serializable]
     public class HeroFightingState : StateBase
     {
-        private readonly HeroController _controller;
-
-        public HeroFightingState(HeroController controller) : base(needsExitTime: false)
+        public HeroFightingState() : base(needsExitTime: false)
         {
-            _controller = controller;
         }
     }
 }

@@ -1,33 +1,41 @@
 ﻿using FSM;
 using UnityEngine;
-using UnityEngine.Splines;
 
 namespace DefaultNamespace
 {
     public class HeroController : MonoBehaviour
     {
-        public SplineContainer path;
-        public string currentState;
-        public float speed;
+        public HeroProgressingState progressingState;
+        public HeroFightingState fightingState;
+        public HeroScaredState scaredState;
 
-        private StateMachine _fsm;
+        // purely debugging, seeing what state is in editor
+        // todo: remove later
+        public string currentState;
+
+        private StateMachine _fearFsm;
+        private StateMachine _normalFsm;
 
         private void Start()
         {
-            _fsm = new StateMachine();
+            _normalFsm = new StateMachine();
+            _normalFsm.AddState("progressing", progressingState);
+            _normalFsm.AddState("fighting", fightingState);
+            _normalFsm.SetStartState("progressing");
 
-            _fsm.AddState("progressing", new HeroProgressingState(this));
-            _fsm.AddState("fighting", new HeroFightingState(this));
-            _fsm.AddState("scared", new HeroScaredState(this));
+            _fearFsm = new StateMachine();
+            _fearFsm.AddState("scared", scaredState);
+            _fearFsm.AddState("normal", _normalFsm);
+            _fearFsm.AddTwoWayTransition("normal", "scared", _ => FearSource.InFearRange(transform.position));
+            _fearFsm.SetStartState("normal");
 
-            _fsm.SetStartState("progressing");
-            _fsm.Init();
+            _fearFsm.Init();
         }
 
         private void Update()
         {
-            _fsm.OnLogic();
-            currentState = _fsm.ActiveStateName;
+            _fearFsm.OnLogic();
+            currentState = _fearFsm.ActiveStateName;
         }
     }
 }
