@@ -5,7 +5,7 @@ namespace DefaultNamespace
 {
     public class HeroController : MonoBehaviour
     {
-        private static Vector3 _heroPosition;
+        private static Vector2 _heroPosition;
         private static bool _heroExists;
 
         public HeroProgressingState progressingState;
@@ -15,7 +15,7 @@ namespace DefaultNamespace
         private StateMachine _fearFsm;
         private StateMachine _normalFsm;
 
-        public static bool TryGetPosition(out Vector3 position)
+        public static bool TryGetPosition(out Vector2 position)
         {
             position = _heroPosition;
             return _heroExists;
@@ -24,7 +24,7 @@ namespace DefaultNamespace
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetStatics()
         {
-            _heroPosition = Vector3.zero;
+            _heroPosition = Vector2.zero;
             _heroExists = false;
         }
 
@@ -38,7 +38,7 @@ namespace DefaultNamespace
             _normalFsm = new StateMachine();
             _normalFsm.AddState("progressing", progressingState);
             _normalFsm.AddState("fighting", fightingState);
-            _normalFsm.AddTwoWayTransition("progressing", "fighting", _ => AggressionSource.InAggroRange(transform.position));
+            _normalFsm.AddTwoWayTransition("progressing", "fighting", _ => AggressionSource.InAggroRange(transform.position, out var _));
             _normalFsm.SetStartState("progressing");
 
             _fearFsm = new StateMachine();
@@ -52,7 +52,7 @@ namespace DefaultNamespace
 
         private void OnDisable()
         {
-            _heroPosition = Vector3.zero;
+            _heroPosition = Vector2.zero;
             _heroExists = false;
         }
 

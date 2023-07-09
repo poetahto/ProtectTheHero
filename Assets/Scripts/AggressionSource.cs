@@ -9,18 +9,20 @@ namespace DefaultNamespace
 
         public float radius = 2;
 
-        public static bool InAggroRange(Vector3 position)
+        public static bool InAggroRange(Vector3 position, out GameObject nearest)
         {
-            foreach (var fearObject in _allFearObjects)
+            foreach (var agroSource in _allFearObjects)
             {
-                float distSqr = (fearObject.transform.position - position).sqrMagnitude;
+                float distSqr = (agroSource.transform.position - position).sqrMagnitude;
 
-                if (distSqr < fearObject.radius * fearObject.radius)
+                if (distSqr < agroSource.radius * agroSource.radius)
                 {
+                    nearest = agroSource.gameObject;
                     return true;
                 }
             }
 
+            nearest = null;
             return false;
         }
 
