@@ -1,6 +1,8 @@
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D body;
     public new Collider2D collider;
     public Vector2 inputDirection;
+    public Entity playerEntity;
     public bool isSprinting;
 
     private ItemController _heldItem;
@@ -53,6 +56,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (playerEntity.health <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
         _grabLock = false;
         Vector2 target = inputDirection * (isSprinting ? sprintSpeed : speed);
         Vector2 current = body.velocity;

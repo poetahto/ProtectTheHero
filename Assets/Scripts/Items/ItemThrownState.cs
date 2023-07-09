@@ -32,7 +32,7 @@ namespace DefaultNamespace
 
         public override void OnLogic()
         {
-            float playerSize = Thrower.bounds.extents.x;
+            float playerSize = Thrower.bounds.extents.x * 2;
 
             if ((Thrower.transform.position - body.transform.position).sqrMagnitude > playerSize * playerSize )
             {

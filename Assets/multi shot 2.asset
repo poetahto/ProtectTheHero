@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1e83facdee248d28c1f4f4e0751a052, type: 3}
-  m_Name: New Multi Shot Attack Style
+  m_Name: multi shot 2
   m_EditorClassIdentifier: 
   audio: {fileID: 8300000, guid: 1e79525d4ba8f154c8058d0b6badb22f, type: 3}
   volume: 1
-  count: 3
-  spread: 15
-  fireRate: 1
+  count: 6
+  spread: 10
+  fireRate: 0.75
   bulletId: hero

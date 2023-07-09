@@ -8,7 +8,8 @@ namespace DefaultNamespace
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.TryGetComponent(out HeroController hero))
+            var p = GetComponent<ItemController>();
+            if (other.TryGetComponent(out HeroController hero) && !p.IsHeld)
             {
                 hero.heroEntity.health += healing;
                 Destroy(gameObject);

@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8717753540477433638
 Transform:
   m_ObjectHideFlags: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919511644792561323}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45971c6224ad11b449bf59bbca0e8f76, type: 3}
   m_Name: 
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919511644792561323}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64db1b5b871b97f4193e13c237dc1a0f, type: 3}
   m_Name: 
@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 1971767492579548717}
   - component: {fileID: 8813919219443000339}
   - component: {fileID: 2762759387406380331}
+  - component: {fileID: 6217774552976178108}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -187,7 +188,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 821360049, guid: c45709612fc92bf4cac1dc8f4a2332ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -205,12 +206,42 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 986419858406646099}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45971c6224ad11b449bf59bbca0e8f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 180
+--- !u!114 &6217774552976178108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986419858406646099}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.5, y: -0.49999988, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: 0.5, y: -0.49999988, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 131264
+  m_LocalBounds:
+    m_Center: {x: 0, y: 0.000000059604645, z: 0}
+    m_Extent: {x: 0.5, y: 0.49999994, z: 0}
 --- !u!1 &2621418302819405003
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,9 +288,10 @@ GameObject:
   - component: {fileID: 2646841191708081428}
   - component: {fileID: 2621779428939776792}
   - component: {fileID: 1581499015584062077}
+  - component: {fileID: 1969068885007947610}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -278,7 +310,7 @@ Transform:
   m_Children:
   - {fileID: 2917592430097131535}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3645583801641682272
 MonoBehaviour:
@@ -292,11 +324,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7fcb769b48be9a4d900adb57e84e088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  throwAudio: {fileID: 8300000, guid: c0aa1dad32aa8ce4ba37aaf687b08d7a, type: 3}
+  grabAudio: {fileID: 8300000, guid: f394f44d5228eae49af4f9fdce6a6f00, type: 3}
   speed: 4
+  throwSpeed: 15
+  sprintSpeed: 6
   acceleration: 25
   deceleration: 2
   body: {fileID: 2621779428939776792}
+  collider: {fileID: 1581499015584062077}
   inputDirection: {x: 0, y: 0}
+  playerEntity: {fileID: 1969068885007947610}
+  isSprinting: 0
 --- !u!114 &2646841191708081428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,6 +377,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 543e8733-f73d-4aa5-9329-ff4f53506203
     m_ActionName: Overworld/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3645583801641682272}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: InputSprint
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7d9d9ae3-5c27-47c1-8f5d-46e187f4bdd5
+    m_ActionName: Overworld/Sprint[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3645583801641682272}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: InputGrab
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 088f7dab-e5dc-4c6b-b2b4-f06361bad66e
+    m_ActionName: Overworld/Grab[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3645583801641682272}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: InputThrow
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 481c7686-662f-4994-ad79-9e226667c381
+    m_ActionName: Overworld/Throw[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Overworld
@@ -366,7 +453,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -415,3 +502,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1969068885007947610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4531167870897686363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 063be8d01e544eeebc05d74a9e2c0c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageSound: {fileID: 8300000, guid: 3e6a12ad891779343bbb046de7fd94ae, type: 3}
+  deathSound: {fileID: 8300000, guid: 27a2260b73b007b479db40d921d42b10, type: 3}
+  health: 5
+  onDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []

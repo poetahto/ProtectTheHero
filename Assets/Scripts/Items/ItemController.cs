@@ -17,6 +17,7 @@ namespace DefaultNamespace
         public UnityEvent<Collider2D, Vector3> onThrow;
 
         private StateMachine _fsm;
+        public bool IsHeld => _fsm.ActiveState == carriedState;
 
         public static bool InPickupRange(Vector3 position, out ItemController nearest)
         {

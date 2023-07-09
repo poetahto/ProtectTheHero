@@ -84,7 +84,7 @@ namespace DefaultNamespace
                 if (_heldItem != null)
                 {
                     AudioSource.PlayClipAtPoint(itemThrowAudio, transform.position);
-                    _heldItem.TryThrow(collider, Vector3.up * 5);
+                    _heldItem.TryThrow(collider, Vector3.up * 15);
                 }
 
                 AudioSource.PlayClipAtPoint(itemGrabAudio, transform.position);
