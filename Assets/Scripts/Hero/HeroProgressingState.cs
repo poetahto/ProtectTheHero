@@ -30,6 +30,11 @@ namespace DefaultNamespace
             _progress += speed / _length * Time.deltaTime;
             float3 position = spline.EvaluatePosition(_progress);
             targetTransform.position = position;
+
+            if (_progress >= 1)
+            {
+                fsm.RequestStateChange("celebrating");
+            }
         }
     }
 }

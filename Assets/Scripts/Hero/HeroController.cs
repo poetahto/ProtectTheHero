@@ -44,6 +44,7 @@ namespace DefaultNamespace
             _behaviorFsm = new StateMachine();
             _behaviorFsm.AddState("progressing", progressingState);
             _behaviorFsm.AddState("fighting", fightingState);
+            _behaviorFsm.AddState("celebrating");
             _behaviorFsm.AddTwoWayTransition("progressing", "fighting", _ => AggressionSource.InAggroRange(transform.position, out var _));
             _behaviorFsm.SetStartState("progressing");
 

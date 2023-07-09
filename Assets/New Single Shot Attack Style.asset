@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audio: {fileID: 8300000, guid: ac6032d5f430bc74a861e09032ec0eea, type: 3}
   volume: 5
-  fireRate: 5
+  fireRate: 0.5
   bulletId: hero

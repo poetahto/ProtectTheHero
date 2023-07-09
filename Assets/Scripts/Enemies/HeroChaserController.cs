@@ -47,11 +47,15 @@ namespace DefaultNamespace
         {
             _fsm = new StateMachine();
             _fsm.AddState("idle", onLogic: _ => DontMove());
-            _fsm.AddState("chasing", onLogic: _ => MoveTowardsPlayer());
+            _fsm.AddState("chasing", onLogic: _ =>
+            {
+                MoveTowardsPlayer();
+                Attack();
+            });
             _fsm.AddState("attacking", onLogic: _ =>
             {
-                Attack();
                 DontMove();
+                Attack();
             });
 
             _fsm.AddTwoWayTransition("idle", "chasing", _ =>
