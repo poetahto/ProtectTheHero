@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0705069001ab4a66b054598111db0700, type: 3}
   m_Name: New Single Shot Attack Style 1
   m_EditorClassIdentifier: 
-  fireRate: 5
+  audio: {fileID: 8300000, guid: 1e79525d4ba8f154c8058d0b6badb22f, type: 3}
+  volume: 5
+  fireRate: 10
   bulletId: hero

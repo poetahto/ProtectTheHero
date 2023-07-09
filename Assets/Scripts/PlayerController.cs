@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public AudioClip throwAudio;
+    public AudioClip grabAudio;
     public float speed;
     public float throwSpeed = 15;
     public float sprintSpeed;
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!_hasItem && context.started && ItemController.InPickupRange(transform.position, out ItemController nearest) && nearest.TryPickUp(gameObject))
         {
+            AudioSource.PlayClipAtPoint(grabAudio, transform.position);
             _grabLock = true;
             _hasItem = true;
         }
@@ -43,6 +46,7 @@ public class PlayerController : MonoBehaviour
         if (_hasItem && !_grabLock && context.started && ItemController.InPickupRange(transform.position, out ItemController nearest) && nearest.TryThrow(collider, inputDirection * throwSpeed))
         {
             // some vfx for throwing
+            AudioSource.PlayClipAtPoint(throwAudio, transform.position);
             _hasItem = false;
         }
     }

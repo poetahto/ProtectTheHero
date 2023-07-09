@@ -6760,13 +6760,13 @@ MonoBehaviour:
   fightingState:
     needsExitTime: 0
     name: 
-    fireRate: 1
-    transform: {fileID: 211782671}
     style: {fileID: 0}
   scaredState:
     needsExitTime: 0
     name: 
   collider: {fileID: 211782675}
+  itemGrabAudio: {fileID: 8300000, guid: 589def58c863268468f9938072b7ac40, type: 3}
+  itemThrowAudio: {fileID: 8300000, guid: b8ecacd6647841f4f9753bc96ba6cefa, type: 3}
 --- !u!114 &211782674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6779,6 +6779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063be8d01e544eeebc05d74a9e2c0c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageSound: {fileID: 0}
   health: 5
   onDamage:
     m_PersistentCalls:
@@ -7027,6 +7028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063be8d01e544eeebc05d74a9e2c0c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageSound: {fileID: 0}
   health: 0
   onDamage:
     m_PersistentCalls:
@@ -9725,6 +9727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063be8d01e544eeebc05d74a9e2c0c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageSound: {fileID: 0}
   health: 0
   onDamage:
     m_PersistentCalls:
@@ -10167,6 +10170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063be8d01e544eeebc05d74a9e2c0c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageSound: {fileID: 0}
   health: 0
   onDamage:
     m_PersistentCalls:
@@ -12251,6 +12255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063be8d01e544eeebc05d74a9e2c0c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageSound: {fileID: 0}
   health: 0
   onDamage:
     m_PersistentCalls:
@@ -12639,6 +12644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063be8d01e544eeebc05d74a9e2c0c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageSound: {fileID: 0}
   health: 0
   onDamage:
     m_PersistentCalls:
@@ -12855,6 +12861,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 143491778036429948}
     - target: {fileID: 3645583801641682272, guid: 7bb76ed9c0c7be94e9a0fb152ff29be6, type: 3}
+      propertyPath: grabAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: f394f44d5228eae49af4f9fdce6a6f00, type: 3}
+    - target: {fileID: 3645583801641682272, guid: 7bb76ed9c0c7be94e9a0fb152ff29be6, type: 3}
+      propertyPath: throwAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: c0aa1dad32aa8ce4ba37aaf687b08d7a, type: 3}
+    - target: {fileID: 3645583801641682272, guid: 7bb76ed9c0c7be94e9a0fb152ff29be6, type: 3}
       propertyPath: sprintSpeed
       value: 6
       objectReference: {fileID: 0}
@@ -12894,6 +12908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063be8d01e544eeebc05d74a9e2c0c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageSound: {fileID: 8300000, guid: 3e6a12ad891779343bbb046de7fd94ae, type: 3}
   health: 0
   onDamage:
     m_PersistentCalls:

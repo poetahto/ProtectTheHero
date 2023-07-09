@@ -10,6 +10,7 @@ namespace DefaultNamespace
         public float damage;
         public float speed;
         public Rigidbody2D body;
+        public Collider2D collider;
         public string targetTag;
         public new Renderer renderer;
         public ParticleSystem particles;
@@ -27,6 +28,7 @@ namespace DefaultNamespace
 
         public override void FireAt(Vector3 target)
         {
+            collider.enabled = true;
             renderer.enabled = true;
             renderer.transform.localScale = _originalScale;
             Debug.DrawLine(body.position, target);
@@ -56,6 +58,7 @@ namespace DefaultNamespace
             if (_isDying)
                 return;
 
+            collider.enabled = false;
             _isDying = true;
             particles.Play();
             LeanTween.alpha(renderer.gameObject, 0, 0.25f);

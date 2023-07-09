@@ -12,6 +12,8 @@ namespace DefaultNamespace
         public HeroFightingState fightingState;
         public HeroScaredState scaredState;
         public new Collider2D collider;
+        public AudioClip itemGrabAudio;
+        public AudioClip itemThrowAudio;
 
         private StateMachine _fearFsm;
         private StateMachine _normalFsm;
@@ -71,9 +73,11 @@ namespace DefaultNamespace
             {
                 if (_heldItem != null)
                 {
+                    AudioSource.PlayClipAtPoint(itemThrowAudio, transform.position);
                     _heldItem.TryThrow(collider, Vector3.up * 5);
                 }
 
+                AudioSource.PlayClipAtPoint(itemGrabAudio, transform.position);
                 _heldItem = item;
             }
         }
