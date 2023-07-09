@@ -1,14 +1,13 @@
 ﻿using System;
 using FSM;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace DefaultNamespace
 {
     [Serializable]
     public class HeroFightingState : StateBase
     {
-        public BulletView bullet;
+        public BulletFactory bullet;
         public float fireRate;
         public Transform transform;
 
@@ -22,7 +21,7 @@ namespace DefaultNamespace
         {
             if (_fireCooldown <= 0 && AggressionSource.InAggroRange(transform.position, out GameObject nearest))
             {
-                var bulletInstance = Object.Instantiate(bullet, transform.position, transform.rotation);
+                var bulletInstance = bullet.CreateBullet(transform.position);
                 bulletInstance.FireAt(nearest.transform.position);
                 _fireCooldown = fireRate;
             }

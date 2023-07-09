@@ -2061,7 +2061,7 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 1
+  m_ShadowIntensityEnabled: 0
   m_ShadowIntensity: 0.75
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
@@ -2266,7 +2266,7 @@ MonoBehaviour:
   fightingState:
     needsExitTime: 0
     name: 
-    bullet: {fileID: 5951325092397995266, guid: 437d5fea2ab2bb5458f33a3651d33c75, type: 3}
+    bullet: {fileID: 631313102}
     fireRate: 1
     transform: {fileID: 211782671}
   scaredState:
@@ -2369,7 +2369,7 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 1
+  m_ShadowIntensityEnabled: 0
   m_ShadowIntensity: 0.75
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
@@ -2564,7 +2564,7 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 1
+  m_ShadowIntensityEnabled: 0
   m_ShadowIntensity: 0.75
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
@@ -2647,6 +2647,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 2
+--- !u!1 &631313100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 631313101}
+  - component: {fileID: 631313102}
+  m_Layer: 0
+  m_Name: Hero Bullet Factory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &631313101
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631313100}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &631313102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631313100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8973e132f2d40fb9f4b676d0249d642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5951325092397995266, guid: 437d5fea2ab2bb5458f33a3651d33c75, type: 3}
 --- !u!1 &674201008
 GameObject:
   m_ObjectHideFlags: 0
@@ -3612,6 +3657,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7fcb769b48be9a4d900adb57e84e088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1160933246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1160933248}
+  - component: {fileID: 1160933247}
+  m_Layer: 0
+  m_Name: Enemy Bullet Factory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1160933247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160933246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8973e132f2d40fb9f4b676d0249d642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5951325092397995266, guid: 91f1bdbaf9868e247b49b2701b628fa9, type: 3}
+--- !u!4 &1160933248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160933246}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1418143547
 GameObject:
   m_ObjectHideFlags: 0
@@ -4416,7 +4506,7 @@ MonoBehaviour:
   range: 10
   stoppingDistance: 5
   body: {fileID: 2091998008}
-  bullet: {fileID: 5951325092397995266, guid: 91f1bdbaf9868e247b49b2701b628fa9, type: 3}
+  bullet: {fileID: 1160933247}
   bulletSpawn: {fileID: 2091998005}
   fireCooldown: 1
 --- !u!50 &2091998008
@@ -4698,19 +4788,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3251589722954078569, guid: d1047be74096b864b900ea68d9d76e9c, type: 3}
       propertyPath: orthographic size
-      value: 8.8125
+      value: 5.875
       objectReference: {fileID: 0}
     - target: {fileID: 3251589722954078569, guid: d1047be74096b864b900ea68d9d76e9c, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.0843061
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3251589722954078569, guid: d1047be74096b864b900ea68d9d76e9c, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.83009076
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3251589722954078569, guid: d1047be74096b864b900ea68d9d76e9c, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.99999994
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4613427023603128248, guid: d1047be74096b864b900ea68d9d76e9c, type: 3}
       propertyPath: m_RootOrder

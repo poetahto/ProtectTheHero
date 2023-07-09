@@ -12,6 +12,18 @@ PrefabInstance:
       propertyPath: targetTag
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4199251257605905126, guid: f6f1611f8f715464b80c7a235e717038, type: 3}
+      propertyPath: color.b
+      value: 0.2784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199251257605905126, guid: f6f1611f8f715464b80c7a235e717038, type: 3}
+      propertyPath: color.g
+      value: 0.3529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199251257605905126, guid: f6f1611f8f715464b80c7a235e717038, type: 3}
+      propertyPath: color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4262197415242914018, guid: f6f1611f8f715464b80c7a235e717038, type: 3}
       propertyPath: m_Color.b
       value: 0.2784314

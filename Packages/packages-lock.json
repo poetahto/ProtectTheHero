@@ -1,7 +1,21 @@
 {
   "dependencies": {
+    "com.cysharp.unitask": {
+      "version": "2.3.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.inspiaaa.unityhfsm": {
       "version": "1.9.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
+    "com.oss.leantween": {
+      "version": "2.50.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {},

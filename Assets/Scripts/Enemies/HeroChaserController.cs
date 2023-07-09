@@ -10,7 +10,7 @@ namespace DefaultNamespace
         public float range;
         public float stoppingDistance;
         public Rigidbody2D body;
-        public BulletView bullet;
+        public BulletFactory bullet;
         public Transform bulletSpawn;
         public float fireCooldown = 1;
 
@@ -22,7 +22,6 @@ namespace DefaultNamespace
             if (HeroController.TryGetPosition(out Vector2 position))
             {
                 body.velocity = (position - (Vector2) transform.position).normalized * speed;
-                // body.velocity = new Vector2(velocity.x, velocity.y);
             }
         }
 
@@ -35,7 +34,7 @@ namespace DefaultNamespace
         {
             if (_fireCooldown <= 0 && HeroController.TryGetPosition(out Vector2 position))
             {
-                var bulletInstance = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+                var bulletInstance = bullet.CreateBullet(bulletSpawn.position);
                 bulletInstance.FireAt(position);
                 _fireCooldown = fireCooldown;
             }
