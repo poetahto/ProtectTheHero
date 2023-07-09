@@ -4951,9 +4951,11 @@ MonoBehaviour:
   damage: 1
   speed: 5
   body: {fileID: 6209529726828561031}
+  collider: {fileID: 4697529307626308367}
   targetTag: Untagged
   renderer: {fileID: 4262197415242914018}
   particles: {fileID: 5747265778844353129}
+  lifetime: 2
 --- !u!50 &6209529726828561031
 Rigidbody2D:
   serializedVersion: 4
@@ -5127,7 +5129,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 160822549
   m_Mesh: {fileID: 0}
-  m_InstanceId: 34652
+  m_InstanceId: 37930
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0}
