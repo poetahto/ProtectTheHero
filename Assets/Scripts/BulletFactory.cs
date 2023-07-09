@@ -1,34 +1,50 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Pool;
 
 namespace DefaultNamespace
 {
     public class BulletFactory : MonoBehaviour
     {
-        public BulletView prefab;
+        public static BulletFactory Instance { get; set; }
 
-        private ObjectPool<BulletView> _pool;
+        private Dictionary<string, ObjectPool<BulletView>> _pools
+            = new Dictionary<string, ObjectPool<BulletView>>();
 
-        private void Start()
+        public void Register(string id, BulletView prefab)
         {
-            _pool = new ObjectPool<BulletView>(() =>
+            if (!_pools.ContainsKey(id))
             {
-                var instance = Instantiate(prefab, transform);
-                instance.OnDeath += () => _pool.Release(instance);
-                return instance;
-            });
+                _pools.Add(id, new ObjectPool<BulletView>(() =>
+                {
+                    var instance = Instantiate(prefab, transform);
+                    instance.OnDeath += () => _pools[id].Release(instance);
+                    return instance;
+                }));
+            }
         }
 
-        public BulletView CreateBullet(Vector2 position)
+        public BulletView CreateBullet(string id, Vector2 position)
         {
-            return CreateBullet(position, Quaternion.identity);
+            return CreateBullet(id, position, Quaternion.identity);
         }
 
-        public BulletView CreateBullet(Vector2 position, Quaternion rotation)
+        public BulletView CreateBullet(string id, Vector2 position, Quaternion rotation)
         {
-            var instance = _pool.Get();
+            var instance = _pools[id].Get();
             instance.transform.SetPositionAndRotation(position, rotation);
             return instance;
+        }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStatics()
+        {
+            Instance = null;
+        }
+
+        private void Awake()
+        {
+            Instance = this;
         }
     }
 }

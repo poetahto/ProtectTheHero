@@ -10,7 +10,6 @@ namespace DefaultNamespace
         public float range;
         public float stoppingDistance;
         public Rigidbody2D body;
-        public BulletFactory bullet;
         public Transform bulletSpawn;
         public float fireCooldown = 1;
 
@@ -34,7 +33,7 @@ namespace DefaultNamespace
         {
             if (_fireCooldown <= 0 && HeroController.TryGetPosition(out Vector2 position))
             {
-                var bulletInstance = bullet.CreateBullet(bulletSpawn.position);
+                var bulletInstance = BulletFactory.Instance.CreateBullet("enemy", bulletSpawn.position);
                 bulletInstance.FireAt(position);
                 _fireCooldown = fireCooldown;
             }

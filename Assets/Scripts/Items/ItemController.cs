@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FSM;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DefaultNamespace
 {
@@ -13,6 +13,8 @@ namespace DefaultNamespace
         public ItemThrownState thrownState;
         public ItemCarriedState carriedState;
         public float radius = 2;
+        public UnityEvent<GameObject> onGrab;
+        public UnityEvent<Collider2D, Vector3> onThrow;
 
         private StateMachine _fsm;
 
@@ -44,6 +46,7 @@ namespace DefaultNamespace
             if (_fsm.ActiveState == droppedState)
             {
                 carriedState.Holder = holder;
+                onGrab.Invoke(holder);
                 _fsm.Trigger("grab");
                 return true;
             }
@@ -57,6 +60,7 @@ namespace DefaultNamespace
             {
                 thrownState.Thrower = thrower;
                 thrownState.Velocity = velocity;
+                onThrow.Invoke(thrower, velocity);
                 _fsm.Trigger("throw");
                 return true;
             }
