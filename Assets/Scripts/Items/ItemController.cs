@@ -39,17 +39,29 @@ namespace DefaultNamespace
             _allItems = new List<ItemController>();
         }
 
-        public void PickUp(GameObject holder)
+        public bool TryPickUp(GameObject holder)
         {
-            carriedState.Holder = holder;
-            _fsm.Trigger("grab");
+            if (_fsm.ActiveState == droppedState)
+            {
+                carriedState.Holder = holder;
+                _fsm.Trigger("grab");
+                return true;
+            }
+
+            return false;
         }
 
-        public void Throw(Collider2D thrower, Vector3 velocity)
+        public bool TryThrow(Collider2D thrower, Vector3 velocity)
         {
-            thrownState.Thrower = thrower;
-            thrownState.Velocity = velocity;
-            _fsm.Trigger("throw");
+            if (_fsm.ActiveState == carriedState && carriedState.Holder == thrower.gameObject)
+            {
+                thrownState.Thrower = thrower;
+                thrownState.Velocity = velocity;
+                _fsm.Trigger("throw");
+                return true;
+            }
+
+            return false;
         }
 
         private void Start()

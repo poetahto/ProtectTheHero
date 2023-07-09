@@ -11,6 +11,7 @@ namespace DefaultNamespace
         public HeroProgressingState progressingState;
         public HeroFightingState fightingState;
         public HeroScaredState scaredState;
+        public new Collider2D collider;
 
         private StateMachine _fearFsm;
         private StateMachine _normalFsm;
@@ -60,6 +61,21 @@ namespace DefaultNamespace
         {
             _heroPosition = transform.position;
             _fearFsm.OnLogic();
+        }
+
+        private ItemController _heldItem;
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.TryGetComponent(out ItemController item) && item.TryPickUp(gameObject))
+            {
+                if (_heldItem != null)
+                {
+                    _heldItem.TryThrow(collider, Vector3.up * 5);
+                }
+
+                _heldItem = item;
+            }
         }
     }
 }

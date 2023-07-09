@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public bool isSprinting;
 
     private ItemController _heldItem;
+    private bool _grabLock;
+    private bool _hasItem;
 
     public void InputMove(InputAction.CallbackContext context)
     {
@@ -29,22 +31,25 @@ public class PlayerController : MonoBehaviour
 
     public void InputGrab(InputAction.CallbackContext context)
     {
-        if (context.started && ItemController.InPickupRange(transform.position, out ItemController nearest))
+        if (!_hasItem && context.started && ItemController.InPickupRange(transform.position, out ItemController nearest) && nearest.TryPickUp(gameObject))
         {
-            nearest.PickUp(gameObject);
+            _grabLock = true;
+            _hasItem = true;
         }
     }
 
     public void InputThrow(InputAction.CallbackContext context)
     {
-        if (context.started && ItemController.InPickupRange(transform.position, out ItemController nearest) && nearest.carriedState.Holder == gameObject)
+        if (_hasItem && !_grabLock && context.started && ItemController.InPickupRange(transform.position, out ItemController nearest) && nearest.TryThrow(collider, inputDirection * throwSpeed))
         {
-            nearest.Throw(collider, inputDirection * throwSpeed);
+            // some vfx for throwing
+            _hasItem = false;
         }
     }
 
     private void Update()
     {
+        _grabLock = false;
         Vector2 target = inputDirection * (isSprinting ? sprintSpeed : speed);
         Vector2 current = body.velocity;
 
