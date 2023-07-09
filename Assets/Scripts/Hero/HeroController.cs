@@ -11,12 +11,15 @@ namespace DefaultNamespace
         public HeroProgressingState progressingState;
         public HeroFightingState fightingState;
         public HeroScaredState scaredState;
+        public HeroDeadState deadState;
         public new Collider2D collider;
+        public Entity heroEntity;
         public AudioClip itemGrabAudio;
         public AudioClip itemThrowAudio;
 
-        private StateMachine _fearFsm;
-        private StateMachine _normalFsm;
+        private StateMachine _lifetimeFsm;
+        private StateMachine _aliveFsm;
+        private StateMachine _behaviorFsm;
 
         public static bool TryGetPosition(out Vector2 position)
         {
@@ -38,19 +41,25 @@ namespace DefaultNamespace
 
         private void Start()
         {
-            _normalFsm = new StateMachine();
-            _normalFsm.AddState("progressing", progressingState);
-            _normalFsm.AddState("fighting", fightingState);
-            _normalFsm.AddTwoWayTransition("progressing", "fighting", _ => AggressionSource.InAggroRange(transform.position, out var _));
-            _normalFsm.SetStartState("progressing");
+            _behaviorFsm = new StateMachine();
+            _behaviorFsm.AddState("progressing", progressingState);
+            _behaviorFsm.AddState("fighting", fightingState);
+            _behaviorFsm.AddTwoWayTransition("progressing", "fighting", _ => AggressionSource.InAggroRange(transform.position, out var _));
+            _behaviorFsm.SetStartState("progressing");
 
-            _fearFsm = new StateMachine();
-            _fearFsm.AddState("scared", scaredState);
-            _fearFsm.AddState("normal", _normalFsm);
-            _fearFsm.AddTwoWayTransition("normal", "scared", _ => FearSource.InFearRange(transform.position));
-            _fearFsm.SetStartState("normal");
+            _aliveFsm = new StateMachine();
+            _aliveFsm.AddState("scared", scaredState);
+            _aliveFsm.AddState("normal", _behaviorFsm);
+            _aliveFsm.AddTwoWayTransition("normal", "scared", _ => FearSource.InFearRange(transform.position));
+            _aliveFsm.SetStartState("normal");
 
-            _fearFsm.Init();
+            _lifetimeFsm = new StateMachine();
+            _lifetimeFsm.AddState("alive", _aliveFsm);
+            _lifetimeFsm.AddState("dead", deadState);
+            _lifetimeFsm.AddTransition("alive", "dead", _ => heroEntity.health <= 0);
+            _lifetimeFsm.SetStartState("alive");
+
+            _lifetimeFsm.Init();
         }
 
         private void OnDisable()
@@ -62,7 +71,7 @@ namespace DefaultNamespace
         private void Update()
         {
             _heroPosition = transform.position;
-            _fearFsm.OnLogic();
+            _lifetimeFsm.OnLogic();
         }
 
         private ItemController _heldItem;

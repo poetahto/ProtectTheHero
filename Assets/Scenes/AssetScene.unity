@@ -6764,7 +6764,11 @@ MonoBehaviour:
   scaredState:
     needsExitTime: 0
     name: 
+  deadState:
+    needsExitTime: 0
+    name: 
   collider: {fileID: 211782675}
+  heroEntity: {fileID: 211782674}
   itemGrabAudio: {fileID: 8300000, guid: 589def58c863268468f9938072b7ac40, type: 3}
   itemThrowAudio: {fileID: 8300000, guid: b8ecacd6647841f4f9753bc96ba6cefa, type: 3}
 --- !u!114 &211782674

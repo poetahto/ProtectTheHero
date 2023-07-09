@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -43,17 +44,18 @@ namespace DefaultNamespace
             if (other.CompareTag(targetTag) && other.TryGetComponent(out Entity entity))
             {
                 entity.Damage(damage);
-                DeathRoutine().Forget();
+                DeathRoutine(gameObject.GetCancellationTokenOnDestroy()).Forget();
             }
         }
 
         private async UniTaskVoid LifetimeTask()
         {
-            await Task.Delay(TimeSpan.FromSeconds(lifetime));
-            await DeathRoutine();
+            var cts = gameObject.GetCancellationTokenOnDestroy();
+            await Task.Delay(TimeSpan.FromSeconds(lifetime), cts);
+            await DeathRoutine(cts);
         }
 
-        private async UniTask DeathRoutine()
+        private async UniTask DeathRoutine(CancellationToken token)
         {
             if (_isDying)
                 return;
@@ -63,7 +65,7 @@ namespace DefaultNamespace
             particles.Play();
             LeanTween.alpha(renderer.gameObject, 0, 0.25f);
             LeanTween.scale(renderer.gameObject, _originalScale * 1.25f, 0.25f);
-            await Task.Delay(TimeSpan.FromSeconds(particles.main.duration));
+            await Task.Delay(TimeSpan.FromSeconds(particles.main.duration), token);
             renderer.enabled = false;
             OnDeath?.Invoke();
         }
